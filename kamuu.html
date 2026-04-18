@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #fceff1, #e0e7ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* CARD */
+.card {
+  width: 320px;
+  padding: 25px;
+  border-radius: 25px;
+  background: #f0f0f3;
+  box-shadow: 10px 10px 25px #d1d1d1,
+              -10px -10px 25px #ffffff;
+  text-align: center;
+}
+
+/* PAGE */
+.page { display: none; animation: fade 0.5s ease; }
+.page.active { display: block; }
+
+@keyframes fade {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+h2 { color: #ff6b81; }
+
+/* PIN */
+#pin {
+  letter-spacing: 12px;
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+/* KEYPAD */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.key {
+  padding: 20px;
+  border-radius: 50%;
+  background: #f0f0f3;
+  box-shadow: 5px 5px 10px #d1d1d1,
+              -5px -5px 10px #ffffff;
+  cursor: pointer;
+}
+.key:active {
+  box-shadow: inset 5px 5px 10px #d1d1d1,
+              inset -5px -5px 10px #ffffff;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background: linear-gradient(45deg,#ff6b81,#ff9a9e);
+  color: white;
+  cursor: pointer;
+  transition: .3s;
+}
+.btn:hover { transform: scale(1.05); }
+
+/* TYPING */
+#typing::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  50% {opacity: 0;}
+}
+
+/* SLIDER */
+.slider img {
+  width: 100%;
+  border-radius: 20px;
+  transition: .5s;
+}
+
+/* MUSIC */
+audio {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.music-img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* HEART */
+.heart {
+  position: absolute;
+  color: red;
+  animation: float 3s linear forwards;
+}
+@keyframes float {
+  from {transform: translateY(0); opacity:1;}
+  to {transform: translateY(-300px); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<h2>Enter PIN 🩵</h2>
+<div id="pin">_ _ _ _</div>
+
+<div class="keypad">
+<div class="key" onclick="press(1)">1</div>
+<div class="key" onclick="press(2)">2</div>
+<div class="key" onclick="press(3)">3</div>
+<div class="key" onclick="press(4)">4</div>
+<div class="key" onclick="press(5)">5</div>
+<div class="key" onclick="press(6)">6</div>
+<div class="key" onclick="press(7)">7</div>
+<div class="key" onclick="press(8)">8</div>
+<div class="key" onclick="press(9)">9</div>
+<div></div>
+<div class="key" onclick="press(0)">0</div>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h2>Happy Birthday My Love 🩵</h2>
+<p id="typing"></p>
+<div class="btn" onclick="next(3)">Next 🩵</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+<h2>Our Memory 🥰</h2>
+<div class="slider">
+<img id="slide" src="https://picsum.photos/300/200?1">
+</div>
+<div class="btn" onclick="next(4)">Next 🩵</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h2>Music For U 🎵</h2>
+
+  <img src="kamu.jpeg" class="music-img">
+
+  <audio id="music" controls>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <p style="margin-top:10px; color:#888;">This song reminds me of you 💖</p>
+</div>
+
+</div>
+
+<script>
+let input="";
+const correctPin="0704";
+
+function press(n){
+if(input.length<4){
+input+=n;
+document.getElementById("pin").innerText=input.replace(/./g,"• ");
+}
+if(input.length===4){
+if(input===correctPin) next(2);
+else{alert("PIN salah"); input=""; document.getElementById("pin").innerText="_ _ _ _";}
+}
+}
+
+/* TEXT */
+const text=`Hai cintaku 🩵
+Selamat ulang tahun ya sayang...
+Aku bersyukur banget bisa punya kamu.
+Kamu itu spesial banget buat aku.
+Aku sayang kamu lebih dari yang kamu tau 🩵`;
+
+let i=0;
+function typeEffect(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeEffect,40);
+}
+}
+
+/* PAGE */
+function next(p){
+document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+document.getElementById("page"+p).classList.add("active");
+
+if(p===2){document.getElementById("typing").innerHTML="";i=0;typeEffect();}
+if(p===4){document.getElementById("music").play(); startHearts();}
+}
+
+/* SLIDER AUTO */
+let images=[
+"1.png",
+"2.png",
+"3.png",
+"4.png",
+"5.png"
+];
+
+let idx=0;
+setInterval(()=>{
+idx=(idx+1)%images.length;
+document.getElementById("slide").src=images[idx];
+},3000);
+
+/* HEART EFFECT */
+function startHearts(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="🩵";
+h.style.left=Math.random()*window.innerWidth+"px";
+h.style.top="100%";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),3000);
+},300);
+}
+</script>
+
+</body>
+</html>

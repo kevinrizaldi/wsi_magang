@@ -1,249 +1,404 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8">
-<title>For You ❤️</title>
+  <meta charset="UTF-8">
+  <title>For You 🩵</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #fceff1, #e0e7ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-/* CARD */
-.card {
-  width: 320px;
-  padding: 25px;
-  border-radius: 25px;
-  background: #f0f0f3;
-  box-shadow: 10px 10px 25px #d1d1d1,
-              -10px -10px 25px #ffffff;
-  text-align: center;
-}
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e0f7ff, #bae8ff, #d0f0ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
 
-/* PAGE */
-.page { display: none; animation: fade 0.5s ease; }
-.page.active { display: block; }
+    /* CARD */
+    .card {
+      width: 340px;
+      padding: 30px 25px;
+      border-radius: 28px;
+      background: #eaf6ff;
+      box-shadow: 12px 12px 28px #b8d8ea,
+        -12px -12px 28px #ffffff;
+      text-align: center;
+      position: relative;
+    }
 
-@keyframes fade {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
+    /* PAGE */
+    .page {
+      display: none;
+      animation: fade 0.5s ease;
+    }
 
-h2 { color: #ff6b81; }
+    .page.active {
+      display: block;
+    }
 
-/* PIN */
-#pin {
-  letter-spacing: 12px;
-  font-size: 28px;
-  margin: 20px 0;
-}
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-/* KEYPAD */
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.key {
-  padding: 20px;
-  border-radius: 50%;
-  background: #f0f0f3;
-  box-shadow: 5px 5px 10px #d1d1d1,
-              -5px -5px 10px #ffffff;
-  cursor: pointer;
-}
-.key:active {
-  box-shadow: inset 5px 5px 10px #d1d1d1,
-              inset -5px -5px 10px #ffffff;
-}
+    h2 {
+      color: #2196F3;
+      margin-bottom: 8px;
+    }
 
-/* BUTTON */
-.btn {
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 20px;
-  background: linear-gradient(45deg,#ff6b81,#ff9a9e);
-  color: white;
-  cursor: pointer;
-  transition: .3s;
-}
-.btn:hover { transform: scale(1.05); }
+    p {
+      color: #4a90b8;
+      line-height: 1.6;
+    }
 
-/* TYPING */
-#typing::after {
-  content: "|";
-  animation: blink 1s infinite;
-}
-@keyframes blink {
-  50% {opacity: 0;}
-}
+    /* ===== PAGE 0 – WELCOME ===== */
+    .welcome-emoji {
+      font-size: 64px;
+      display: block;
+      margin-bottom: 10px;
+      animation: bounce 2s infinite;
+    }
 
-/* SLIDER */
-.slider img {
-  width: 100%;
-  border-radius: 20px;
-  transition: .5s;
-}
+    @keyframes bounce {
 
-/* MUSIC */
-audio {
-  width: 100%;
-  margin-top: 15px;
-}
+      0%,
+      100% {
+        transform: translateY(0);
+      }
 
-.music-img {
-  width: 100%;
-  border-radius: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
+      50% {
+        transform: translateY(-10px);
+      }
+    }
 
-/* HEART */
-.heart {
-  position: absolute;
-  color: red;
-  animation: float 3s linear forwards;
-}
-@keyframes float {
-  from {transform: translateY(0); opacity:1;}
-  to {transform: translateY(-300px); opacity:0;}
-}
-</style>
+    .welcome-title {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1a7bbf;
+      margin: 0 0 8px;
+    }
+
+    .welcome-sub {
+      font-size: 13px;
+      color: #5aaccf;
+      margin-bottom: 20px;
+    }
+
+    /* ===== PIN ===== */
+    #pin {
+      letter-spacing: 14px;
+      font-size: 28px;
+      margin: 20px 0;
+      color: #1a7bbf;
+    }
+
+    /* KEYPAD */
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .key {
+      padding: 18px;
+      border-radius: 50%;
+      background: #eaf6ff;
+      box-shadow: 5px 5px 12px #b8d8ea,
+        -5px -5px 12px #ffffff;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 500;
+      color: #1a7bbf;
+      transition: .15s;
+      user-select: none;
+    }
+
+    .key:active {
+      box-shadow: inset 5px 5px 12px #b8d8ea,
+        inset -5px -5px 12px #ffffff;
+      transform: scale(0.95);
+    }
+
+    /* BUTTON */
+    .btn {
+      margin-top: 22px;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 22px;
+      background: linear-gradient(45deg, #29b6f6, #4fc3f7, #81d4fa);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: .3s;
+      border: none;
+      box-shadow: 0 5px 18px rgba(41, 182, 246, 0.35);
+      letter-spacing: 0.5px;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(41, 182, 246, 0.45);
+    }
+
+    /* TYPING */
+    #typing {
+      white-space: pre-line;
+      color: #2c7da0;
+      font-size: 14px;
+      text-align: left;
+      padding: 10px 5px;
+      min-height: 100px;
+    }
+
+    #typing::after {
+      content: "|";
+      animation: blink 1s infinite;
+      color: #29b6f6;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* SLIDER */
+    .slider img {
+      width: 100%;
+      border-radius: 18px;
+      transition: .5s;
+      box-shadow: 0 6px 20px rgba(41, 182, 246, 0.2);
+    }
+
+    /* MUSIC */
+    audio {
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .music-img {
+      width: 100%;
+      border-radius: 18px;
+      margin-bottom: 15px;
+      box-shadow: 0 6px 20px rgba(41, 182, 246, 0.25);
+    }
+
+    .music-sub {
+      margin-top: 10px;
+      color: #5aaccf;
+      font-size: 13px;
+    }
+
+    /* HEART */
+    .heart {
+      position: fixed;
+      animation: float 3.5s linear forwards;
+      pointer-events: none;
+      font-size: 22px;
+      z-index: 999;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(-320px);
+        opacity: 0;
+      }
+    }
+
+    /* Stars on welcome page */
+    .star {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #29b6f6;
+      animation: twinkle 2.5s infinite alternate;
+      opacity: 0.5;
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.2;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 0.9;
+        transform: scale(1.4);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="card">
+  <div class="card">
 
-<!-- PAGE 1 -->
-<div class="page active" id="page1">
-<h2>Enter PIN 🩵</h2>
-<div id="pin">_ _ _ _</div>
+    <!-- PAGE 0 – HALAMAN AWAL -->
+    <div class="page active" id="page0">
+      <!-- dekorasi bintang -->
+      <div class="star" style="top:20px;left:25px;animation-delay:.3s"></div>
+      <div class="star" style="top:35px;right:30px;animation-delay:.8s;width:8px;height:8px"></div>
+      <div class="star" style="bottom:70px;left:18px;animation-delay:1.2s"></div>
+      <div class="star" style="bottom:55px;right:22px;animation-delay:.5s;width:5px;height:5px"></div>
 
-<div class="keypad">
-<div class="key" onclick="press(1)">1</div>
-<div class="key" onclick="press(2)">2</div>
-<div class="key" onclick="press(3)">3</div>
-<div class="key" onclick="press(4)">4</div>
-<div class="key" onclick="press(5)">5</div>
-<div class="key" onclick="press(6)">6</div>
-<div class="key" onclick="press(7)">7</div>
-<div class="key" onclick="press(8)">8</div>
-<div class="key" onclick="press(9)">9</div>
-<div></div>
-<div class="key" onclick="press(0)">0</div>
-</div>
-</div>
+      <span class="welcome-emoji">🩵</span>
+      <p class="welcome-title">Hai, Sayang~</p>
+      <p class="welcome-sub">Ada sesuatu spesial yang aku siapkan<br>khusus buat kamu 🌤️</p>
 
-<!-- PAGE 2 -->
-<div class="page" id="page2">
-<h2>Happy Birthday My Love 🩵</h2>
-<p id="typing"></p>
-<div class="btn" onclick="next(3)">Next 🩵</div>
-</div>
+      <button class="btn" onclick="next(1)">Mulai &nbsp;→</button>
+    </div>
 
-<!-- PAGE 3 -->
-<div class="page" id="page3">
-<h2>Our Memory 🥰</h2>
-<div class="slider">
-<img id="slide" src="https://picsum.photos/300/200?1">
-</div>
-<div class="btn" onclick="next(4)">Next 🩵</div>
-</div>
+    <!-- PAGE 1 – PIN -->
+    <div class="page" id="page1">
+      <h2>Enter PIN 🩵</h2>
+      <div id="pin">_ _ _ _</div>
 
-<!-- PAGE 4 -->
-<div class="page" id="page4">
-  <h2>Music For U 🎵</h2>
+      <div class="keypad">
+        <div class="key" onclick="press(1)">1</div>
+        <div class="key" onclick="press(2)">2</div>
+        <div class="key" onclick="press(3)">3</div>
+        <div class="key" onclick="press(4)">4</div>
+        <div class="key" onclick="press(5)">5</div>
+        <div class="key" onclick="press(6)">6</div>
+        <div class="key" onclick="press(7)">7</div>
+        <div class="key" onclick="press(8)">8</div>
+        <div class="key" onclick="press(9)">9</div>
+        <div></div>
+        <div class="key" onclick="press(0)">0</div>
+        <div class="key" onclick="del()">⌫</div>
+      </div>
+    </div>
 
-  <img src="kamu.jpeg" class="music-img">
+    <!-- PAGE 2 – PESAN -->
+    <div class="page" id="page2">
+      <h2>Happy Birthday My Love 🩵</h2>
+      <p id="typing"></p>
+      <button class="btn" onclick="next(3)">Next 🩵</button>
+    </div>
 
-  <audio id="music" controls>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+    <!-- PAGE 3 – FOTO -->
+    <div class="page" id="page3">
+      <h2>Our Memory 🥰</h2>
+      <div class="slider">
+        <img id="slide" src="1.png" alt="memory">
+      </div>
+      <button class="btn" onclick="next(4)">Next 🩵</button>
+    </div>
 
-  <p style="margin-top:10px; color:#888;">This song reminds me of you 💖</p>
-</div>
+    <!-- PAGE 4 – MUSIK -->
+    <div class="page" id="page4">
+      <h2>Music For U 🎵</h2>
+      <img src="kamu.jpeg" class="music-img" alt="kamu">
+      <audio id="music" controls>
+        <source src="music.mp3" type="audio/mpeg">
+      </audio>
+      <p class="music-sub">This song reminds me of you 💖</p>
+    </div>
 
-</div>
+  </div>
 
-<script>
-let input="";
-const correctPin="0704";
+  <script>
+    /* ===== PIN ===== */
+    let input = "";
+    const correctPin = "0704";
 
-function press(n){
-if(input.length<4){
-input+=n;
-document.getElementById("pin").innerText=input.replace(/./g,"• ");
-}
-if(input.length===4){
-if(input===correctPin) next(2);
-else{alert("PIN salah"); input=""; document.getElementById("pin").innerText="_ _ _ _";}
-}
-}
+    function press(n) {
+      if (input.length < 4) {
+        input += n;
+        document.getElementById("pin").innerText = input.replace(/./g, "• ").trim();
+      }
+      if (input.length === 4) {
+        if (input === correctPin) {
+          setTimeout(() => next(2), 300);
+        } else {
+          document.getElementById("pin").style.color = "#f44336";
+          setTimeout(() => {
+            document.getElementById("pin").style.color = "#1a7bbf";
+            document.getElementById("pin").innerText = "_ _ _ _";
+            input = "";
+          }, 700);
+        }
+      }
+    }
 
-/* TEXT */
-const text=`Hai cintaku 🩵
-Selamat ulang tahun ya sayang...
-Aku bersyukur banget bisa punya kamu.
-Kamu itu spesial banget buat aku.
-Aku sayang kamu lebih dari yang kamu tau 🩵`;
+    function del() {
+      if (input.length > 0) {
+        input = input.slice(0, -1);
+        document.getElementById("pin").innerText =
+          input.length === 0 ? "_ _ _ _"
+            : (input.replace(/./g, "• ").trim() + " _".repeat(4 - input.length));
+      }
+    }
 
-let i=0;
-function typeEffect(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(typeEffect,40);
-}
-}
+    /* ===== TYPING EFFECT ===== */
+    const text = `
+Selamat ulang tahun ya sayang, semoga di umur yang baru ini semua hal baik selalu datang ke hidup kamu, kesehatan, kebahagiaan, dan semua impian yang kamu inginkan bisa tercapai satu per satu. Terima kasih sudah hadir dan jadi bagian paling berarti dalam hidup aku, semoga kita selalu bisa saling nemenin dan bertahan sampai kapan pun. 🩵`;
 
-/* PAGE */
-function next(p){
-document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
-document.getElementById("page"+p).classList.add("active");
+    let i = 0;
+    function typeEffect() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 40);
+      }
+    }
 
-if(p===2){document.getElementById("typing").innerHTML="";i=0;typeEffect();}
-if(p===4){document.getElementById("music").play(); startHearts();}
-}
+    /* ===== PAGE NAV ===== */
+    function next(p) {
+      document.querySelectorAll(".page").forEach(x => x.classList.remove("active"));
+      document.getElementById("page" + p).classList.add("active");
+      if (p === 2) { document.getElementById("typing").innerHTML = ""; i = 0; typeEffect(); }
+      if (p === 4) { document.getElementById("music").play(); startHearts(); }
+    }
 
-/* SLIDER AUTO */
-let images=[
-"1.png",
-"2.png",
-"3.png",
-"4.png",
-"5.png"
-];
+    /* ===== SLIDER AUTO ===== */
+    const images = ["1.png", "2.png", "3.png", "4.png", "5.png"];
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % images.length;
+      const slide = document.getElementById("slide");
+      slide.style.opacity = "0";
+      setTimeout(() => { slide.src = images[idx]; slide.style.opacity = "1"; }, 300);
+    }, 3000);
 
-let idx=0;
-setInterval(()=>{
-idx=(idx+1)%images.length;
-document.getElementById("slide").src=images[idx];
-},3000);
-
-/* HEART EFFECT */
-function startHearts(){
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="🩵";
-h.style.left=Math.random()*window.innerWidth+"px";
-h.style.top="100%";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),3000);
-},300);
-}
-</script>
+    /* ===== HEARTS ===== */
+    function startHearts() {
+      setInterval(() => {
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "🩵";
+        h.style.left = Math.random() * window.innerWidth + "px";
+        h.style.top = window.innerHeight + "px";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 3500);
+      }, 300);
+    }
+  </script>
 
 </body>
+
 </html>

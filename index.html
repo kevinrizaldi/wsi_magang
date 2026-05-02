@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>For You 🩵</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -20,13 +21,14 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      min-height: 100dvh; /* support dynamic viewport di mobile */
       overflow: hidden;
     }
 
     /* CARD */
     .card {
-      width: 340px;
-      padding: 30px 25px;
+      width: min(340px, 92vw);
+      padding: clamp(20px, 6vw, 30px) clamp(16px, 5vw, 25px);
       border-radius: 28px;
       background: #eaf6ff;
       box-shadow: 12px 12px 28px #b8d8ea,
@@ -60,16 +62,18 @@
     h2 {
       color: #2196F3;
       margin-bottom: 8px;
+      font-size: clamp(16px, 5vw, 22px);
     }
 
     p {
       color: #4a90b8;
       line-height: 1.6;
+      font-size: clamp(13px, 3.5vw, 15px);
     }
 
     /* ===== PAGE 0 – WELCOME ===== */
     .welcome-emoji {
-      font-size: 64px;
+      font-size: clamp(48px, 15vw, 64px);
       display: block;
       margin-bottom: 10px;
       animation: bounce 2s infinite;
@@ -88,23 +92,23 @@
     }
 
     .welcome-title {
-      font-size: 22px;
+      font-size: clamp(18px, 5.5vw, 22px);
       font-weight: 600;
       color: #1a7bbf;
       margin: 0 0 8px;
     }
 
     .welcome-sub {
-      font-size: 13px;
+      font-size: clamp(12px, 3.5vw, 13px);
       color: #5aaccf;
       margin-bottom: 20px;
     }
 
     /* ===== PIN ===== */
     #pin {
-      letter-spacing: 14px;
-      font-size: 28px;
-      margin: 20px 0;
+      letter-spacing: clamp(8px, 3vw, 14px);
+      font-size: clamp(22px, 7vw, 28px);
+      margin: 16px 0;
       color: #1a7bbf;
     }
 
@@ -112,21 +116,25 @@
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: clamp(10px, 3vw, 14px);
     }
 
     .key {
-      padding: 18px;
+      padding: clamp(14px, 4.5vw, 18px);
       border-radius: 50%;
       background: #eaf6ff;
       box-shadow: 5px 5px 12px #b8d8ea,
         -5px -5px 12px #ffffff;
       cursor: pointer;
-      font-size: 18px;
+      font-size: clamp(16px, 5vw, 18px);
       font-weight: 500;
       color: #1a7bbf;
       transition: .15s;
       user-select: none;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .key:active {
@@ -137,14 +145,14 @@
 
     /* BUTTON */
     .btn {
-      margin-top: 22px;
-      padding: 12px 0;
+      margin-top: 18px;
+      padding: 13px 0;
       width: 100%;
       border-radius: 22px;
       background: linear-gradient(45deg, #29b6f6, #4fc3f7, #81d4fa);
       color: white;
       font-family: 'Poppins', sans-serif;
-      font-size: 15px;
+      font-size: clamp(14px, 4vw, 15px);
       font-weight: 500;
       cursor: pointer;
       transition: .3s;
@@ -162,10 +170,10 @@
     #typing {
       white-space: pre-line;
       color: #2c7da0;
-      font-size: 14px;
+      font-size: clamp(12px, 3.5vw, 14px);
       text-align: left;
       padding: 10px 5px;
-      min-height: 100px;
+      min-height: 90px;
     }
 
     #typing::after {
@@ -204,7 +212,7 @@
     .music-sub {
       margin-top: 10px;
       color: #5aaccf;
-      font-size: 13px;
+      font-size: clamp(12px, 3.5vw, 13px);
     }
 
     /* HEART */
@@ -248,6 +256,17 @@
       to {
         opacity: 0.9;
         transform: scale(1.4);
+      }
+    }
+
+    /* ===== RESPONSIF LAYAR SANGAT KECIL (< 360px) ===== */
+    @media (max-width: 360px) {
+      .card {
+        border-radius: 20px;
+      }
+
+      .key {
+        padding: 12px;
       }
     }
   </style>
